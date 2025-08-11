@@ -18,6 +18,15 @@ body {
   color: #000;
 }
 
+.light-mode h1 {
+  text-shadow: 
+    1px 1px 0 #e0e0e0, 
+    2px 2px 0 #d0d0d0,
+    3px 3px 0 #b8b8b8,
+    4px 4px 0 #a0a0a0,
+    5px 5px 5px rgba(0,0,0,0.2);
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -87,6 +96,11 @@ h1 span:nth-child(8) { animation-delay: 0.45s; }
 #themeIcon {
   width: 32px;
   height: 32px;
+}
+
+
+.light-mode .contact-btn {
+  color: #333;
 }
 
 .contact-btn {

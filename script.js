@@ -41,11 +41,27 @@ const phrases = [
   "개발자는 창조하고 테스터는 구합니다"
 ];
 
-let current = 0;
 const phraseEl = document.getElementById('phrase');
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 
+function initTheme() {
+  
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  const isLightMode = savedTheme === 'light';
+  
+  
+  document.body.classList.toggle('light-mode', isLightMode);
+  themeIcon.src = isLightMode ? "icon-light.svg" : "icon-dark.svg";
+}
+
+function toggleTheme() {
+  const isLightMode = document.body.classList.toggle('light-mode');
+  themeIcon.src = isLightMode ? "icon-light.svg" : "icon-dark.svg";
+  localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+}
+
+let current = 0;
 function showNextPhrase() {
   phraseEl.style.opacity = 0;
   setTimeout(() => {
@@ -55,14 +71,12 @@ function showNextPhrase() {
   }, 500);
 }
 
-setInterval(showNextPhrase, 3000);
-showNextPhrase();
-
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('light-mode');
-  if (document.body.classList.contains('light-mode')) {
-    themeIcon.src = "icon-light.svg";
-  } else {
-    themeIcon.src = "icon-dark.svg";
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  
+  initTheme();
+  
+  themeToggle.addEventListener('click', toggleTheme);
+  
+  setInterval(showNextPhrase, 3000);
+  showNextPhrase();
 });
